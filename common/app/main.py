@@ -20,12 +20,6 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 templates = Jinja2Templates(directory='templates')
 
 
-def first(src: list[T], cond: Callable[[T], bool]) -> T | None:
-    for obj in src:
-        if cond(obj):
-            return obj
-
-    return None
 
 
 @app.get('/', response_class=HTMLResponse)
@@ -35,9 +29,13 @@ async def index(request: Request):
 
 @app.post('/upload', response_class=HTMLResponse)
 async def upload(request: Request, file: Annotated[bytes, File()]):
+    '''
+    Сделать тут обработку картинки
+    
+    '''
     if (validate_file(file)):
         try:
-            remote = RemoteKoblikModel(file)
+            remote = RemoteVozModel(file) #Вызываем класс обрабатывающий картинку
             result = remote.execute()
 
             return templates.TemplateResponse('index.html',
@@ -51,11 +49,17 @@ async def upload(request: Request, file: Annotated[bytes, File()]):
                                           {'request': request, 'output': 'Only .zip|.rar files are allowed', 'success': 0})
 
 
-def validate_file(file: bytes):
-    rand_name = hashlib.md5(str(random.choice(nums)).encode()).hexdigest()
-    open(rand_name, 'wb').write(file)
+def validate_file(file: bytes): return 1
+    # rand_name = hashlib.md5(str(random.choice(nums)).encode()).hexdigest()
+    # open(rand_name, 'wb').write(file)
 
-    print(rand_name)
-    zipped = zipfile.is_zipfile(rand_name)
-    os.remove(rand_name)
-    return zipped
+    # print(rand_name)
+    # zipped = zipfile.is_zipfile(rand_name)
+    # os.remove(rand_name)
+    # return zipped
+
+# def first(src: list[T], cond: Callable[[T], bool]) -> T | None:
+#     for obj in src:
+#         if cond(obj):
+#             return obj
+#     return None
