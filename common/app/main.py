@@ -2,11 +2,12 @@ import hashlib
 import os
 import random
 import zipfile
-from fastapi import FastAPI, File, Path, Request, status, UploadFile
+from fastapi import FastAPI, File, Path, Request, status, UploadFile, Form, Depends
+from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from typing import Annotated, Any, Callable, TypeVar
+from typing import Annotated, Any, Callable, Literal, TypeVar
 
 from app.models import *
 
@@ -36,8 +37,9 @@ async def upload(request: Request, file: Annotated[bytes, File()]):
     if (validate_file(file)):
         try:
             remote = RemoteVozModel(file) #Вызываем класс обрабатывающий картинку
-            result = remote.execute()
-
+            remote = Form(request)
+            result = remote
+            # result = remote.execute()
             return templates.TemplateResponse('index.html',
                                               {'request': request, 'output': result, 'success': 1})
         except Exception as ex:
@@ -47,6 +49,10 @@ async def upload(request: Request, file: Annotated[bytes, File()]):
     else:
         return templates.TemplateResponse('index.html',
                                           {'request': request, 'output': 'Only .zip|.rar files are allowed', 'success': 0})
+
+# @app.get('/form', response_class=HTMLResponse)
+# async def form_req(request: Request, dishes: = Form()):
+#     return templates.TemplateResponse('index.html', {'request': request, 'output': 'Oops, some errors was occurred', 'success': 0})
 
 
 def validate_file(file: bytes): return 1

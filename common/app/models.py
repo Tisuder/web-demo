@@ -2,6 +2,7 @@ import abc
 import numpy as np
 from PIL import Image
 import cv2
+import os
 
 class RemoteModel(abc.ABC):
     @abc.abstractmethod
@@ -21,12 +22,15 @@ class RemoteVozModel(RemoteModel):
         # model.bar()
         # return len(self.file) #Возвращаем результат анализа
         self.show()
+        return 'succes'
 
     def image(self):
         name = '1.jpg'
         open(name, 'wb').write(self.file)
         # print(name)
         img = np.array(Image.open(name))
+        os.remove(name)
+        # img = Image.open(self.file)
         return img
     
     def show(self, time:int=5*10**3):
@@ -45,16 +49,7 @@ class RemoteVozModel(RemoteModel):
 
 
 
-class InternalModel():
-    def foo(self):
-        pass
-    
-    def bar(self):
-        pass
-
-
-
 def file_to_bytes(filename):
-    return open(filename, 'rb').read()
-
+    data = open(filename, 'rb').read()
+    return data
 # a = RemoteVozModel(file=file_to_bytes('1.jpg')).show()
