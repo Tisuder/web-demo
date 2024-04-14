@@ -57,10 +57,11 @@ span {
     padding: 2px 5px;
   }
 
-.dishes {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 800px;
-    text-align: center;
+.menu-item :hover{
+    font-weight: bolder;
+    background-color: coral !important;
+}
+.form-control-lg :hover{
+    font-weight: bolder;
+    background-color: coral !important;
 }

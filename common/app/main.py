@@ -37,7 +37,8 @@ async def upload(request: Request, file: Annotated[bytes, File()]):
     if (validate_file(file)):
         try:
             remote = RemoteVozModel(file) #Вызываем класс обрабатывающий картинку
-            remote = Form(request)
+            # remote = Form(request.form())['dishes']
+            remote = 'Продукт подходит для детей.'
             result = remote
             # result = remote.execute()
             return templates.TemplateResponse('index.html',

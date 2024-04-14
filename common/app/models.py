@@ -4,6 +4,8 @@ from PIL import Image
 import cv2
 import os
 
+from pure_chk import *
+
 class RemoteModel(abc.ABC):
     @abc.abstractmethod
     def execute(self):
@@ -21,8 +23,7 @@ class RemoteVozModel(RemoteModel):
         # model.foo()
         # model.bar()
         # return len(self.file) #Возвращаем результат анализа
-        self.show()
-        return 'succes'
+        return chek(self.img)
 
     def image(self):
         name = '1.jpg'

@@ -60,25 +60,24 @@
     <div id="main-interface" class="container mt-5">
         <span class="d-flex justify-content-center fs-4">Загрузите фотографию и выберите категорию продукта для просмотра информации о продукте</span>
         <span class="d-flex justify-content-center fs-4">↓</span>
-        <label for="dish-select">Выберите категорию продукта:</label>
         <br></br>
-        <select form="file_form" class="dishes" required name="dishes" id="dishes">
-            <option value="">Нажмите для выбора</option>
-            <option value="cereals">Сухие или быстрорастворимые хлопья  крахмалистые продукты</option>
-            <option value="desserts">Десерты на молочной основе и крупяные продукты</option>
-            <option value="fruit_puree">Фруктовое пюре с добавлением овощей, круп и молока или без них</option>
-            <option value="vegetable_puree">Пюре из овощей с добавлением круп</option>
-            <option value="cheese_puree">Пюре с сыром, не содержащее мясо или рыбу</option>
-            <option value="meat_puree1">Пюре из мяса или рыбы, упомянутые в названии продукта первыми</option>
-            <option value="meat_puree0">Пюре из мяса или рыбы, НЕ упомянутые в названии продукта первыми</option>
-            <option value="meat_fish_and_cheese_puree">Пюре, состоящее только из мяса, рыбы или сыра</option>
-            <option value="dishes_pieces">Мясные, рыбные или сырные блюда с крупными кусочками</option>
-            <option value="vegetable_dish">Блюдо на овощной основе с кусочками</option>
-            <option value="sweets">Кондитерские изделия, сладкие пасты и фруктовые жевательные изделия</option>
-            <option value="fruits">Фрукты (свежие или сушеные целые фрукты или кусочки)</option>
-            <option value="other">Другие закуски</option>
+        <select form="file_form" class="form-control-lg" required name="dishes" id="dishes">
+            <option class="menu-item" value="">Нажмите для выбора</option>    
+            <option class="menu-item" value="cereals">Сухие или быстрорастворимые хлопья  крахмалистые продукты</option>
+            <option class="menu-item" value="desserts">Десерты на молочной основе и крупяные продукты</option>
+            <option class="menu-item" value="fruit_puree">Фруктовое пюре с добавлением овощей, круп и молока или без них</option>
+            <option class="menu-item" value="vegetable_puree">Пюре из овощей с добавлением круп</option>
+            <option class="menu-item" value="cheese_puree">Пюре с сыром, не содержащее мясо или рыбу</option>
+            <option class="menu-item" value="meat_puree1">Пюре из мяса или рыбы, упомянутые в названии продукта первыми</option>
+            <option class="menu-item" value="meat_puree0">Пюре из мяса или рыбы, НЕ упомянутые в названии продукта первыми</option>
+            <option class="menu-item" value="meat_fish_and_cheese_puree">Пюре, состоящее только из мяса, рыбы или сыра</option>
+            <option class="menu-item" value="dishes_pieces">Мясные, рыбные или сырные блюда с крупными кусочками</option>
+            <option class="menu-item" value="vegetable_dish">Блюдо на овощной основе с кусочками</option>
+            <option class="menu-item" value="sweets">Кондитерские изделия, сладкие пасты и фруктовые жевательные изделия</option>
+            <option class="menu-item" value="fruits">Фрукты (свежие или сушеные целые фрукты или кусочки)</option>
+            <option class="menu-item" value="other">Другие закуски</option>
           </select> 
-        <form name="file_form" action="/upload" method="post" enctype="multipart/form-data" class="container mt-3 row">
+        <form  action="/upload" method="post" enctype="multipart/form-data" class="container mt-3 row" id="file_form">
             <!-- <p class="form-label text-decoration-underline ">Only archives .png/.jpg may be uploaded</p> -->
             <input accept=".png,.jpg" type="file" class="form-control form-control-lg col" name="file">
             <button class='btn btn-danger col-2' type="submit">
